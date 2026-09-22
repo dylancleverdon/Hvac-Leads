@@ -54,51 +54,40 @@ jobs:
       - run: flutter pub get
 
       # Every release must be signed with the same key so Android will treat
-      # it as an update rather than a conflicting package. The keystore is
-      # generated once locally (see README) and stored base64-encoded as a
-      # repo secret; it's decoded here only for the duration of the build.
-      #
-      # If that secret hasn't been set up yet, this falls back to generating
-      # a one-off keystore right here in the runner (no secret needed at all)
-      # so a downloadable, installable APK is never blocked on that setup
-      # step. The tradeoff: a release built with the fallback key won't
-      # install as a seamless *update* over a release built with a different
-      # fallback key (Android requires matching signatures) — only real
-      # consequence is you might need to uninstall the old one first. Once
-      # the persistent keystore secret is added, every release after that
-      # signs consistently and updates seamlessly.
+      # it as an update rather than a conflicting package. Rather than
+      # requiring a human to run keytool locally and paste secrets into
+      # GitHub, CI manages its own persistent key: the first run ever
+      # generates it and commits it straight back into the repo; every run
+      # after that just finds it already there and reuses it. Nothing here
+      # ever leaves the runner except via this job's own git push.
       - name: Set up release signing
-        id: signing
-        env:
-          RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
-          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: |
-          if [ -n "$RELEASE_KEYSTORE_BASE64" ]; then
-            echo "mode=persistent" >> "$GITHUB_OUTPUT"
-            echo "$RELEASE_KEYSTORE_BASE64" | base64 -d > android/app/release.keystore
-            cat > android/key.properties <<EOF
-          storeFile=release.keystore
-          storePassword=$RELEASE_KEYSTORE_PASSWORD
-          keyAlias=$RELEASE_KEY_ALIAS
-          keyPassword=$RELEASE_KEY_PASSWORD
-          EOF
-          else
-            echo "::warning::No RELEASE_KEYSTORE_BASE64 secret set — signing with a one-off key generated for this run only. See README to switch to a persistent key so future releases update in place."
-            echo "mode=fallback" >> "$GITHUB_OUTPUT"
+          KEYSTORE_PATH="android/app/ci-release.keystore"
+          if [ ! -f "$KEYSTORE_PATH" ]; then
+            if [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+              echo "::error::No committed keystore yet, and this run isn't on a branch (it's a tag push) so I can't commit one back. Run this workflow once via 'Run workflow' on a branch first to seed the keystore, then tag pushes will find it."
+              exit 1
+            fi
+            echo "No committed keystore found — generating one for the first time."
             keytool -genkeypair -v \
-              -keystore android/app/release.keystore \
-              -alias ci-fallback -keyalg RSA -keysize 2048 -validity 10000 \
-              -storepass ci-fallback-pass -keypass ci-fallback-pass \
-              -dname "CN=HVAC Leads CI, OU=CI, O=HVAC Leads, C=US"
-            cat > android/key.properties <<EOF
-          storeFile=release.keystore
-          storePassword=ci-fallback-pass
-          keyAlias=ci-fallback
-          keyPassword=ci-fallback-pass
-          EOF
+              -keystore "$KEYSTORE_PATH" \
+              -alias hvacleads -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass hvacleads2026 -keypass hvacleads2026 \
+              -dname "CN=HVAC Leads, OU=Personal, O=HVAC Leads, C=US"
+
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -f "$KEYSTORE_PATH"
+            git commit -m "Add persistent CI release-signing keystore [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
+
+          cat > android/key.properties <<EOF
+          storeFile=ci-release.keystore
+          storePassword=hvacleads2026
+          keyAlias=hvacleads
+          keyPassword=hvacleads2026
+          EOF
 
       - name: Build release APK
         run: flutter build apk --release
@@ -108,7 +97,4 @@ jobs:
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           generate_release_notes: true
-          append_body: true
-          body: |
-            ${{ steps.signing.outputs.mode == 'fallback' && '⚠️ Signed with a temporary, one-off key (no persistent RELEASE_KEYSTORE_BASE64 secret configured yet). Installable now; future releases may not update in place over this one until the persistent key is set up — see README.' || '' }}
           files: build/app/outputs/flutter-apk/app-release.apk

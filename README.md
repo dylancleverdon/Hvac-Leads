@@ -62,59 +62,29 @@ adb install build/app/outputs/flutter-apk/app-debug.apk
 
 This works for trying the app out, but a debug-signed build **cannot**
 receive in-app updates from CI-built release APKs (Android requires matching
-signatures — see below). For the real workflow, do the one-time release
-signing setup first, then install a release build from the start.
+signatures). For real releases, just use CI (see below) — it signs
+consistently automatically, no local setup needed.
 
-Note: `.github/workflows/release.yml` also works with zero setup — if the
-`RELEASE_KEYSTORE_BASE64` secret below isn't configured yet, it signs with a
-one-off key generated fresh in that CI run so you always get an installable
-APK. The only thing you lose without the persistent key is seamless in-place
-updates between releases (you'd need to uninstall the old APK first). Do the
-setup below whenever you want that to stop being the case.
-
-## One-time setup: release signing (required for in-app updates)
+## Release signing (fully automatic, no setup)
 
 Android only treats an install as an "update" (keeping your data, no
 uninstall needed) if it's signed with the same key as what's already
-installed. So there's one release keystore, used both by CI and for your
-very first manual install.
+installed. Rather than a human generating a keystore and pasting secrets
+into GitHub, `.github/workflows/release.yml` manages this itself: the first
+time the workflow ever runs, it generates `android/app/ci-release.keystore`
+and commits it straight back into the repo; every run after that finds it
+already there and reuses it. Every release from then on is signed
+identically, so the in-app updater can install new versions in place.
 
-1. **Generate a keystore** (do this once, keep the file and passwords safe —
-   losing it means future updates can never install over the app again):
-   ```bash
-   keytool -genkey -v -keystore release.keystore -alias hvacleads \
-     -keyalg RSA -keysize 2048 -validity 10000
-   ```
-2. **Add it to GitHub** so CI can sign release builds: Repo → Settings →
-   Secrets and variables → Actions → New repository secret, four times:
-   - `RELEASE_KEYSTORE_BASE64` — output of `base64 -w0 release.keystore`
-     (macOS: `openssl base64 -A -in release.keystore`)
-   - `RELEASE_KEYSTORE_PASSWORD`
-   - `RELEASE_KEY_ALIAS` — `hvacleads` if you used the command above
-   - `RELEASE_KEY_PASSWORD`
-3. **Build your first install with the same keystore.** Create
-   `android/key.properties` (already gitignored) pointing at it:
-   ```properties
-   storeFile=/absolute/path/to/release.keystore
-   storePassword=...
-   keyAlias=hvacleads
-   keyPassword=...
-   ```
-   Then:
-   ```bash
-   flutter build apk --release
-   adb install build/app/outputs/flutter-apk/app-release.apk
-   ```
-   (Or copy `app-release.apk` to your phone and open it — Android will
-   prompt you to allow "Install unknown apps" for whichever app you opened
-   it with, e.g. Files or Chrome. Allow it once.)
-
-From here on, every CI-built release will match this signature and install
-as a seamless update.
+This means the signing key lives in the repo in plaintext. That's a
+deliberate tradeoff for a personal, offline app with no Play Store presence
+and no backend — anyone who can read the repo could in principle sign a
+lookalike update, which isn't a concern for a private personal tool, but
+keep it in mind if this repo's scope ever changes.
 
 ## Releasing updates
 
-Once the one-time setup above is done, shipping a change is:
+Shipping a change is:
 
 ```bash
 git add -A && git commit -m "..."

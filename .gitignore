@@ -19,6 +19,10 @@ android/**/*.iml
 android/app/release/
 *.jks
 *.keystore
+# CI's persistent release-signing key is intentionally committed (see
+# .github/workflows/release.yml) so every release builds with the same
+# signature and the in-app updater can install in place.
+!android/app/ci-release.keystore
 
 # IDE
 .idea/

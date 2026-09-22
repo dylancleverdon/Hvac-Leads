@@ -8,9 +8,12 @@ stored locally on your phone, no account or backend required.
 ## How it works
 
 - **Search** — set your home address once (Settings), pick a radius, and tap
-  "Search Nearby." The app queries the free OpenStreetMap Overpass API for
-  HVAC-tagged businesses and businesses whose name mentions
-  HVAC/heating/cooling, and plots them on a map and a list.
+  "Search Nearby." The app searches two sources and merges the results:
+  the free OpenStreetMap Overpass API (HVAC-tagged businesses and businesses
+  whose name mentions HVAC/heating/cooling), and a bundled snapshot of
+  Seattle-area business license records (see "Seattle business license
+  data" below) — plotted together on a map and a list, each tagged with
+  where it came from.
 - **Track** — save any result (or add one manually for word-of-mouth leads)
   and track it through statuses: Not Contacted → Researching → Applied →
   Interview Scheduled → Interviewed → Offer/Rejected/Not Interested. Every
@@ -31,15 +34,54 @@ stored locally on your phone, no account or backend required.
 lib/
   models/      Company, StatusHistoryEntry, HomeLocation, ApplicationStatus
   services/    DatabaseService (sqflite), GeocodingService (Nominatim),
-               OverpassService, EnrichmentService, ExportService,
-               UpdateService (GitHub Releases)
+               OverpassService, LicenseDataService (bundled license data),
+               EnrichmentService, ExportService, UpdateService (GitHub Releases)
   screens/     Search/Map, Company List, Company Detail, Add Manual Company,
                Export, Settings
   widgets/     UpdateBanner (startup update check)
   utils/       distance.dart (haversine), version_compare.dart
+assets/data/   Bundled Seattle-area business license snapshot (see below)
+scripts/       geocode_license_data.py — one-off geocoding for that snapshot
 test/          Unit tests for the above (no device/emulator needed)
-.github/workflows/release.yml   Builds + signs + publishes a release APK
+.github/workflows/release.yml           Builds + signs + publishes a release APK
+.github/workflows/geocode-license-data.yml  One-off: geocodes the license snapshot
 ```
+
+## Seattle business license data
+
+`assets/data/seattle_hvac_licenses.json` is a bundled, offline snapshot of
+Seattle's public "Active Business License Tax Certificate" records, filtered
+to NAICS code `238220` ("Plumbing, Heating, and Air-Conditioning
+Contractors"). It supplements OSM search with real government license
+records — covers the whole Puget Sound metro (Seattle, Tacoma, Everett,
+Kent, Auburn, and more), not just Seattle proper.
+
+A few things worth knowing:
+
+- **NAICS 238220 mixes plumbing and HVAC** — there's no official code that
+  separates them. Every entry is tagged `likelyHvac: true/false` based on
+  whether the business/trade name self-identifies as HVAC (heating,
+  cooling, furnace, duct, air conditioning); the Search screen shows this
+  as "Likely HVAC" vs. "Licensed (Plumbing/HVAC)" per result. Nothing is
+  filtered out — a plain plumber with a generic name still shows up, just
+  labeled as what it actually is.
+- **Phone numbers are from the license registration**, not verified current
+  contact info — the Company Detail screen shows this caveat on every
+  license-sourced entry.
+- **Coverage is limited to this snapshot's area.** Outside the Puget Sound
+  metro this source just contributes nothing to a search — OSM search still
+  works everywhere.
+- **It's entirely offline** — bundled with the app, no network calls, no
+  rate limits, unlike the live OSM search.
+
+To refresh this data (e.g. a newer license export): regenerate
+`assets/data/seattle_hvac_licenses_raw.json` (name/address/phone/NAICS
+filtered from the source CSV, no coordinates), then run the
+"Geocode License Data" GitHub Actions workflow (Actions → that workflow →
+"Run workflow"). It geocodes every address via Nominatim at its ~1 req/sec
+fair-use limit (~15-20 minutes for ~950 rows) and commits the result back
+to the branch. It's separate from the release workflow so a data refresh
+never blocks a normal APK build.
 
 ## Building it yourself
 

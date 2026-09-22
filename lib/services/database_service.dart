@@ -24,12 +24,13 @@ class DatabaseService {
     final path = p.join(dbPath, 'hvac_leads.db');
     return openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE companies (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             osm_id TEXT UNIQUE,
+            license_id TEXT UNIQUE,
             name TEXT NOT NULL,
             lat REAL NOT NULL,
             lng REAL NOT NULL,
@@ -40,6 +41,7 @@ class DatabaseService {
             source TEXT NOT NULL,
             status TEXT NOT NULL,
             notes TEXT,
+            likely_hvac INTEGER NOT NULL DEFAULT 0,
             created_at TEXT NOT NULL,
             updated_at TEXT NOT NULL
           )
@@ -64,6 +66,19 @@ class DatabaseService {
             updated_at TEXT NOT NULL
           )
         ''');
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          // SQLite's ALTER TABLE ADD COLUMN can't add a UNIQUE constraint
+          // directly ("Cannot add a UNIQUE column") — add the column plain,
+          // then enforce uniqueness with a separate unique index (which,
+          // like a UNIQUE column, still allows multiple NULLs).
+          await db.execute('ALTER TABLE companies ADD COLUMN license_id TEXT');
+          await db.execute(
+              'CREATE UNIQUE INDEX idx_companies_license_id ON companies(license_id)');
+          await db.execute(
+              'ALTER TABLE companies ADD COLUMN likely_hvac INTEGER NOT NULL DEFAULT 0');
+        }
       },
       onConfigure: (db) async {
         await db.execute('PRAGMA foreign_keys = ON');
@@ -93,12 +108,26 @@ class DatabaseService {
     return rows.map((r) => r['osm_id'] as String).toSet();
   }
 
-  /// Inserts a new company, or updates an existing one with the same osmId.
+  Future<Set<String>> getExistingLicenseIds() async {
+    final db = await database;
+    final rows = await db.query('companies',
+        columns: ['license_id'], where: 'license_id IS NOT NULL');
+    return rows.map((r) => r['license_id'] as String).toSet();
+  }
+
+  /// Inserts a new company, or updates an existing one with the same osmId
+  /// or licenseId (whichever the company carries).
   Future<int> upsertCompany(Company company) async {
     final db = await database;
-    if (company.osmId != null) {
+    final dedupeColumn = company.osmId != null
+        ? 'osm_id'
+        : company.licenseId != null
+            ? 'license_id'
+            : null;
+    final dedupeValue = company.osmId ?? company.licenseId;
+    if (dedupeColumn != null) {
       final existing = await db.query('companies',
-          where: 'osm_id = ?', whereArgs: [company.osmId], limit: 1);
+          where: '$dedupeColumn = ?', whereArgs: [dedupeValue], limit: 1);
       if (existing.isNotEmpty) {
         final id = existing.first['id'] as int;
         await db.update('companies', company.toMap()..remove('id'),

@@ -226,6 +226,26 @@ class _CompanyDetailScreenState extends State<CompanyDetailScreen> {
               if (value != null) _changeStatus(value);
             },
           ),
+          if (company.source == CompanySource.license) ...[
+            const SizedBox(height: 12),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                'Source: Seattle-area business license records. Phone number '
+                'is from the license registration and may not be the '
+                "business's current or best contact number.",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  fontSize: 13,
+                ),
+              ),
+            ),
+          ],
           const SizedBox(height: 16),
           Row(
             children: [

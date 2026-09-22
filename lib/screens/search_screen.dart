@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 
+import '../models/company.dart';
 import '../models/home_location.dart';
 import '../services/database_service.dart';
+import '../services/license_data_service.dart';
 import '../services/overpass_service.dart';
 import '../utils/distance.dart';
 import 'add_manual_company_screen.dart';
@@ -21,14 +23,17 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final _db = DatabaseService.instance;
   final _overpass = OverpassService();
+  final _licenseData = LicenseDataService();
   final _mapController = MapController();
 
   HomeLocation? _home;
-  List<OverpassResult> _results = [];
+  List<Company> _results = [];
   Set<String> _savedOsmIds = {};
+  Set<String> _savedLicenseIds = {};
   bool _loading = false;
   bool _hasSearched = false;
   String? _error;
+  String? _partialWarning;
   int _cooldownSeconds = 0;
   Timer? _cooldownTimer;
 
@@ -66,34 +71,67 @@ class _SearchScreenState extends State<SearchScreen> {
     if (mounted) setState(() => _home = home);
   }
 
+  bool _isSaved(Company c) {
+    if (c.osmId != null) return _savedOsmIds.contains(c.osmId);
+    if (c.licenseId != null) return _savedLicenseIds.contains(c.licenseId);
+    return false;
+  }
+
   Future<void> _search() async {
-    if (_home == null) return;
+    final home = _home;
+    if (home == null) return;
     setState(() {
       _loading = true;
       _error = null;
+      _partialWarning = null;
     });
+
     var wasRateLimited = false;
+    final combined = <Company>[];
+    String? osmError;
+
     try {
-      final results = await _overpass.searchNearby(
-        lat: _home!.lat,
-        lng: _home!.lng,
-        radiusMiles: _home!.radiusMiles,
-      );
-      final saved = await _db.getExistingOsmIds();
-      results.sort((a, b) => distanceMiles(_home!.lat, _home!.lng, a.lat, a.lng)
-          .compareTo(distanceMiles(_home!.lat, _home!.lng, b.lat, b.lng)));
-      setState(() {
-        _results = results;
-        _savedOsmIds = saved;
-      });
-      if (results.isNotEmpty) {
-        _mapController.move(ll.LatLng(_home!.lat, _home!.lng), 11);
+      // OSM (live, free, rate-limited) and the bundled license dataset
+      // (offline, no limits) are independent — one failing shouldn't hide
+      // results from the other.
+      try {
+        final overpassResults = await _overpass.searchNearby(
+          lat: home.lat,
+          lng: home.lng,
+          radiusMiles: home.radiusMiles,
+        );
+        combined.addAll(overpassResults.map((r) => r.toCompany()));
+      } catch (e) {
+        wasRateLimited = e is OverpassRateLimitException;
+        osmError = wasRateLimited ? '$e' : 'OSM search failed: $e';
       }
-    } catch (e) {
-      wasRateLimited = e is OverpassRateLimitException;
+
+      final licenseResults = await _licenseData.withinRadius(
+        homeLat: home.lat,
+        homeLng: home.lng,
+        radiusMiles: home.radiusMiles,
+      );
+      combined.addAll(licenseResults.map((r) => r.toCompany()));
+
+      combined.sort((a, b) => distanceMiles(home.lat, home.lng, a.lat, a.lng)
+          .compareTo(distanceMiles(home.lat, home.lng, b.lat, b.lng)));
+
+      final savedOsm = await _db.getExistingOsmIds();
+      final savedLicense = await _db.getExistingLicenseIds();
+
       setState(() {
-        _error = wasRateLimited ? '$e' : 'Search failed: $e';
+        _results = combined;
+        _savedOsmIds = savedOsm;
+        _savedLicenseIds = savedLicense;
+        if (combined.isEmpty) {
+          _error = osmError;
+        } else {
+          _partialWarning = osmError;
+        }
       });
+      if (combined.isNotEmpty) {
+        _mapController.move(ll.LatLng(home.lat, home.lng), 11);
+      }
     } finally {
       if (mounted) {
         setState(() {
@@ -105,13 +143,43 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  Future<void> _save(OverpassResult result) async {
-    await _db.upsertCompany(result.toCompany());
-    setState(() => _savedOsmIds = {..._savedOsmIds, result.osmId});
+  Future<void> _save(Company company) async {
+    await _db.upsertCompany(company);
+    setState(() {
+      if (company.osmId != null) {
+        _savedOsmIds = {..._savedOsmIds, company.osmId!};
+      }
+      if (company.licenseId != null) {
+        _savedLicenseIds = {..._savedLicenseIds, company.licenseId!};
+      }
+    });
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Added ${result.name}')),
+        SnackBar(content: Text('Added ${company.name}')),
       );
+    }
+  }
+
+  String _sourceLabel(Company c) {
+    switch (c.source) {
+      case CompanySource.osm:
+        return 'OSM';
+      case CompanySource.license:
+        return c.likelyHvac ? 'Likely HVAC' : 'Licensed (Plumbing/HVAC)';
+      case CompanySource.manual:
+        return 'Manual';
+    }
+  }
+
+  Color _pinColor(Company c) {
+    if (_isSaved(c)) return Colors.green;
+    switch (c.source) {
+      case CompanySource.osm:
+        return Colors.red;
+      case CompanySource.license:
+        return c.likelyHvac ? Colors.deepOrange : Colors.blueGrey;
+      case CompanySource.manual:
+        return Colors.purple;
     }
   }
 
@@ -219,21 +287,17 @@ class _SearchScreenState extends State<SearchScreen> {
             height: 36,
             child: const Icon(Icons.home, color: Colors.blue, size: 32),
           ),
-          for (final r in _results)
+          for (final c in _results)
             Marker(
-              point: ll.LatLng(r.lat, r.lng),
+              point: ll.LatLng(c.lat, c.lng),
               width: 32,
               height: 32,
-              child: Icon(
-                Icons.location_on,
-                color:
-                    _savedOsmIds.contains(r.osmId) ? Colors.green : Colors.red,
-                size: 30,
-              ),
+              child: Icon(Icons.location_on, color: _pinColor(c), size: 30),
             ),
         ]),
         const RichAttributionWidget(attributions: [
           TextSourceAttribution('OpenStreetMap contributors'),
+          TextSourceAttribution('Seattle-area business license records'),
         ]),
       ],
     );
@@ -266,10 +330,10 @@ class _SearchScreenState extends State<SearchScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                'No HVAC companies found on OpenStreetMap within range. '
-                "That's common — small service businesses are often not "
-                'mapped there. You can add companies you already know about '
-                'by hand instead.',
+                'No companies found nearby (checked both OpenStreetMap and '
+                'Seattle-area business license records — the license source '
+                'only covers the Puget Sound area). You can add companies '
+                'you already know about by hand instead.',
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
@@ -288,24 +352,43 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       );
     }
-    return ListView.builder(
-      itemCount: _results.length,
-      itemBuilder: (context, index) {
-        final r = _results[index];
-        final saved = _savedOsmIds.contains(r.osmId);
-        final miles = distanceMiles(home.lat, home.lng, r.lat, r.lng);
-        return ListTile(
-          title: Text(r.name),
-          subtitle: Text([
-            '${miles.toStringAsFixed(1)} mi',
-            if (r.phone != null) r.phone!,
-            if (r.address != null) r.address!,
-          ].join(' • ')),
-          trailing: saved
-              ? const Icon(Icons.check_circle, color: Colors.green)
-              : TextButton(onPressed: () => _save(r), child: const Text('Add')),
-        );
-      },
+    return Column(
+      children: [
+        if (_partialWarning != null)
+          Container(
+            width: double.infinity,
+            color: Theme.of(context).colorScheme.errorContainer,
+            padding: const EdgeInsets.all(12),
+            child: Text(
+              _partialWarning!,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onErrorContainer),
+            ),
+          ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: _results.length,
+            itemBuilder: (context, index) {
+              final c = _results[index];
+              final saved = _isSaved(c);
+              final miles = distanceMiles(home.lat, home.lng, c.lat, c.lng);
+              return ListTile(
+                title: Text(c.name),
+                subtitle: Text([
+                  '${miles.toStringAsFixed(1)} mi',
+                  _sourceLabel(c),
+                  if (c.phone != null) c.phone!,
+                  if (c.address != null) c.address!,
+                ].join(' • ')),
+                trailing: saved
+                    ? const Icon(Icons.check_circle, color: Colors.green)
+                    : TextButton(
+                        onPressed: () => _save(c), child: const Text('Add')),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

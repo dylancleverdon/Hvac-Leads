@@ -1,0 +1,32 @@
+name: Geocode License Data
+
+# One-off / re-runnable job: geocodes assets/data/seattle_hvac_licenses_raw.json
+# via Nominatim and commits the result (assets/data/seattle_hvac_licenses.json,
+# with lat/lng added) back into the repo. Not part of the release build —
+# ~946 addresses at Nominatim's ~1 req/sec fair-use limit takes ~15-20
+# minutes, which shouldn't hold up every APK build. Re-run manually only
+# when the source license CSV is refreshed and the raw JSON regenerated.
+on:
+  workflow_dispatch:
+
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: python3 scripts/geocode_license_data.py
+
+      - name: Commit geocoded data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/data/seattle_hvac_licenses.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update geocoded Seattle-area HVAC/plumbing license data"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

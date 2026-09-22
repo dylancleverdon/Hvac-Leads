@@ -24,6 +24,10 @@ android/app/release/
 # signature and the in-app updater can install in place.
 !android/app/ci-release.keystore
 
+# Python
+__pycache__/
+*.pyc
+
 # IDE
 .idea/
 .vscode/

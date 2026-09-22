@@ -10,6 +10,7 @@ lib/services/geocoding_service.dart.
 """
 
 import json
+import re
 import sys
 import time
 import urllib.parse
@@ -19,6 +20,26 @@ RAW_PATH = "assets/data/seattle_hvac_licenses_raw.json"
 OUT_PATH = "assets/data/seattle_hvac_licenses.json"
 USER_AGENT = "HvacLeads/1.0 (personal job-hunt tracker app, one-time data geocode)"
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
+
+# Suite/unit designators ("# STE A", "#101", "UNIT 5", ...) frequently make
+# Nominatim's address parser fail to match anything at all, even though the
+# base street address is fine — a business unit within a building shares
+# the building's coordinates anyway, so stripping this for the geocoding
+# query (not for the stored/displayed address) is a safe fallback. Matches
+# from the first "#" or whole-word unit keyword to the end of the street
+# segment (not just one token — "# STE 101" needs both "STE" and "101"
+# gone). Keywords need \b on both sides so e.g. "FL" doesn't match inside
+# "FLEET RD".
+_UNIT_START = re.compile(
+    r"\s*(?:#|\b(?:STE|SUITE|UNIT|APT|BLDG|BUILDING)\b).*$",
+    re.IGNORECASE,
+)
+
+
+def strip_unit(address: str) -> str:
+    street, _, rest = address.partition(",")
+    stripped_street = _UNIT_START.sub("", street).strip()
+    return f"{stripped_street},{rest}" if rest else stripped_street
 
 
 def geocode(address: str):
@@ -40,22 +61,33 @@ def main():
     out = []
     failures = []
     for i, row in enumerate(rows):
+        address = row["address"]
+        coords = None
+        last_error = None
+
         try:
-            coords = geocode(row["address"])
+            coords = geocode(address)
         except Exception as e:  # noqa: BLE001 - log and continue
-            coords = None
-            failures.append((row["address"], str(e)))
+            last_error = str(e)
+        time.sleep(1.0)  # respect Nominatim's ~1 req/sec fair-use limit
 
         if coords is None:
-            failures.append((row["address"], "no match"))
+            stripped = strip_unit(address)
+            if stripped and stripped != address:
+                try:
+                    coords = geocode(stripped)
+                except Exception as e:  # noqa: BLE001
+                    last_error = str(e)
+                time.sleep(1.0)
+
+        if coords is None:
+            failures.append((address, last_error or "no match"))
         else:
             lat, lng = coords
             out.append({**row, "lat": lat, "lng": lng})
 
         if (i + 1) % 25 == 0 or i == len(rows) - 1:
             print(f"geocoded {i + 1}/{len(rows)} ({len(out)} succeeded)", file=sys.stderr)
-
-        time.sleep(1.0)  # respect Nominatim's ~1 req/sec fair-use limit
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)

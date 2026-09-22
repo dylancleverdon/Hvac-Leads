@@ -44,10 +44,12 @@ class _SearchScreenState extends State<SearchScreen> {
     super.dispose();
   }
 
-  // A short pause between searches is a good citizen towards the free,
-  // shared Overpass mirrors and reduces how often we hit their rate limit.
-  void _startCooldown() {
-    setState(() => _cooldownSeconds = 5);
+  // A pause between searches is a good citizen towards the free, shared
+  // Overpass mirrors. Longer specifically after a real rate-limit failure
+  // (OverpassService already retried twice internally before giving up) —
+  // a short 5s retry would almost certainly hit the same limit again.
+  void _startCooldown({required bool afterRateLimit}) {
+    setState(() => _cooldownSeconds = afterRateLimit ? 30 : 5);
     _cooldownTimer?.cancel();
     _cooldownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!mounted) {
@@ -70,6 +72,7 @@ class _SearchScreenState extends State<SearchScreen> {
       _loading = true;
       _error = null;
     });
+    var wasRateLimited = false;
     try {
       final results = await _overpass.searchNearby(
         lat: _home!.lat,
@@ -87,8 +90,9 @@ class _SearchScreenState extends State<SearchScreen> {
         _mapController.move(ll.LatLng(_home!.lat, _home!.lng), 11);
       }
     } catch (e) {
+      wasRateLimited = e is OverpassRateLimitException;
       setState(() {
-        _error = e is OverpassRateLimitException ? '$e' : 'Search failed: $e';
+        _error = wasRateLimited ? '$e' : 'Search failed: $e';
       });
     } finally {
       if (mounted) {
@@ -96,7 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
           _loading = false;
           _hasSearched = true;
         });
-        _startCooldown();
+        _startCooldown(afterRateLimit: wasRateLimited);
       }
     }
   }

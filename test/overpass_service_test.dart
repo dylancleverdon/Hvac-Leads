@@ -83,19 +83,56 @@ void main() {
     }
   });
 
-  test('throws OverpassRateLimitException when every endpoint returns 429',
-      () async {
-    final client = MockClient((request) async => http.Response(
-          'rate limited',
-          429,
-          headers: {'retry-after': '0'}, // keep the test fast
-        ));
-    final service = OverpassService(client: client);
+  test(
+      'throws OverpassRateLimitException after two full passes if every '
+      'endpoint always returns 429', () async {
+    var callCount = 0;
+    final client = MockClient((request) async {
+      callCount++;
+      return http.Response('rate limited', 429, headers: {'retry-after': '0'});
+    });
+    final service = OverpassService(client: client, passCoolOff: Duration.zero);
 
-    expect(
+    await expectLater(
       () => service.searchNearby(lat: 40.0, lng: -75.0, radiusMiles: 15),
       throwsA(isA<OverpassRateLimitException>()),
     );
+    // 2 passes over all 4 configured mirrors, all 429, before giving up.
+    expect(callCount, 8);
+  });
+
+  test(
+      'does a second pass and recovers if every mirror was rate-limited in '
+      'the first pass', () async {
+    var callCount = 0;
+    final client = MockClient((request) async {
+      callCount++;
+      if (callCount <= 4) {
+        return http.Response('rate limited', 429,
+            headers: {'retry-after': '0'});
+      }
+      return http.Response(
+          jsonEncode({
+            'elements': [
+              {
+                'type': 'node',
+                'id': 7,
+                'lat': 5.0,
+                'lon': 6.0,
+                'tags': {'name': 'Second Pass HVAC'},
+              },
+            ],
+          }),
+          200);
+    });
+    final service = OverpassService(client: client, passCoolOff: Duration.zero);
+
+    final results =
+        await service.searchNearby(lat: 5.0, lng: 6.0, radiusMiles: 10);
+
+    expect(callCount, 5); // pass 1: 4 mirrors all 429; pass 2: 1st succeeds.
+    expect(results, hasLength(1));
+    expect(results.first.name, 'Second Pass HVAC');
   });
 
   test('recovers if an earlier endpoint 429s but a later one succeeds',

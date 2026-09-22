@@ -62,26 +62,32 @@ class OverpassRateLimitException implements Exception {
 /// inconsistent tagging. Coverage will still vary by area — that's why the
 /// app also supports adding companies manually.
 class OverpassService {
-  OverpassService({http.Client? client}) : _client = client ?? http.Client();
+  OverpassService({http.Client? client, Duration? passCoolOff})
+      : _client = client ?? http.Client(),
+        _passCoolOff = passCoolOff ?? const Duration(seconds: 8);
 
   // Public Overpass mirrors, tried in order, since the shared instances
   // occasionally rate-limit or go down. Only list hosts actually verified
   // to resolve/respond — a bogus hostname here fails the whole search with
-  // a DNS error, which is worse than having fewer mirrors.
+  // a DNS error, which is worse than having fewer mirrors. Verified via a
+  // CI runner with normal internet access (this sandbox's own network
+  // policy blocks reaching Overpass directly to check).
   static const _endpoints = [
     'https://overpass-api.de/api/interpreter',
     'https://overpass.kumi.systems/api/interpreter',
+    'https://overpass.private.coffee/api/interpreter',
+    'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
   ];
 
   final http.Client _client;
+  final Duration _passCoolOff;
 
   String _buildQuery(double lat, double lng, double radiusMeters) {
     final around = 'around:${radiusMeters.round()},$lat,$lng';
     // Case-insensitive (the ",i" flag) since Overpass regex matching is
     // case-sensitive by default and business names aren't consistently
     // capitalized ("Acme Hvac", "ABC HEATING", etc).
-    const nameRegex =
-        'HVAC|heating|cooling|furnace|duct|air[- ]?condition';
+    const nameRegex = 'HVAC|heating|cooling|furnace|duct|air[- ]?condition';
     return '''
 [out:json][timeout:25];
 (
@@ -102,35 +108,51 @@ out center tags;
     final radiusMeters = radiusMiles * 1609.34;
     final query = _buildQuery(lat, lng, radiusMeters);
 
+    // Up to two full passes over the mirror list. A fair-use rate limit is
+    // often per-minute-ish, so if *every* mirror 429s in a pass, one longer
+    // wait before trying them all again is more likely to actually clear
+    // it than just hopping between mirrors that are all currently limited.
+    const maxPasses = 2;
     Object? lastError;
-    var hitRateLimit = false;
     var hitOtherFailure = false;
 
-    for (final endpoint in _endpoints) {
-      try {
-        final response = await _client.post(Uri.parse(endpoint),
-            body: {'data': query}).timeout(const Duration(seconds: 30));
+    for (var pass = 1; pass <= maxPasses; pass++) {
+      var allRateLimitedThisPass = true;
 
-        if (response.statusCode == 429) {
-          hitRateLimit = true;
-          lastError = Exception('Overpass returned 429');
-          await _waitAfterRateLimit(response);
+      for (final endpoint in _endpoints) {
+        try {
+          final response = await _client.post(Uri.parse(endpoint),
+              body: {'data': query}).timeout(const Duration(seconds: 30));
+
+          if (response.statusCode == 429) {
+            lastError = Exception('Overpass returned 429');
+            await _waitAfterRateLimit(response);
+            continue;
+          }
+          allRateLimitedThisPass = false;
+          if (response.statusCode != 200) {
+            throw Exception('Overpass returned ${response.statusCode}');
+          }
+          return _parse(response.body);
+        } catch (e) {
+          allRateLimitedThisPass = false;
+          hitOtherFailure = true;
+          lastError = e;
           continue;
         }
-        if (response.statusCode != 200) {
-          throw Exception('Overpass returned ${response.statusCode}');
-        }
-        return _parse(response.body);
-      } catch (e) {
-        hitOtherFailure = true;
-        lastError = e;
+      }
+
+      if (allRateLimitedThisPass && pass < maxPasses) {
+        await Future.delayed(_passCoolOff);
         continue;
       }
+      break;
     }
 
-    // Only ever saw 429s (no real errors) — that's a distinct, actionable
-    // condition worth surfacing differently than "something went wrong".
-    if (hitRateLimit && !hitOtherFailure) {
+    // Every attempt across every pass was specifically a 429 (no real
+    // errors) — that's a distinct, actionable condition worth surfacing
+    // differently than "something went wrong".
+    if (!hitOtherFailure) {
       throw const OverpassRateLimitException();
     }
     throw Exception('All Overpass endpoints failed: $lastError');

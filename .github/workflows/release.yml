@@ -8,6 +8,15 @@ on:
   push:
     tags:
       - "v*"
+  # Lets a release be triggered from the GitHub API/UI on any branch, not
+  # just by pushing a tag — useful when the environment building this repo
+  # can't push git tags directly (e.g. a restricted CI credential).
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release, e.g. 0.1.0"
+        required: true
+        default: "0.1.0"
 
 jobs:
   build-and-release:
@@ -17,12 +26,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Derive version from tag
+      - name: Derive version
         id: version
         run: |
-          TAG="${GITHUB_REF#refs/tags/}"
-          VERSION_NAME="${TAG#v}"
-          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION_NAME="${{ inputs.version }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+            VERSION_NAME="${TAG#v}"
+          fi
+          echo "tag=v$VERSION_NAME" >> "$GITHUB_OUTPUT"
           echo "version_name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Set pubspec version to match tag

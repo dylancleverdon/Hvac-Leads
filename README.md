@@ -124,6 +124,11 @@ it — no cable, no Play Store.
 Version numbers should be dotted (`v1.1.0`, not `v1.1`) so the in-app
 comparison in `lib/utils/version_compare.dart` sorts correctly.
 
+You can also trigger a release without pushing a tag: on GitHub, go to
+Actions → "Release APK" → "Run workflow", type a version number, and run it
+on any branch. Useful if you'd rather not push tags from wherever you're
+working.
+
 ## Known limitations
 
 - **OSM coverage varies by area.** It's community-maintained data, so some

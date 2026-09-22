@@ -165,7 +165,7 @@ class _SearchScreenState extends State<SearchScreen> {
       case CompanySource.osm:
         return 'OSM';
       case CompanySource.license:
-        return c.likelyHvac ? 'Likely HVAC' : 'Licensed (Plumbing/HVAC)';
+        return 'Licensed HVAC/AC';
       case CompanySource.manual:
         return 'Manual';
     }
@@ -177,7 +177,7 @@ class _SearchScreenState extends State<SearchScreen> {
       case CompanySource.osm:
         return Colors.red;
       case CompanySource.license:
-        return c.likelyHvac ? Colors.deepOrange : Colors.blueGrey;
+        return Colors.deepOrange;
       case CompanySource.manual:
         return Colors.purple;
     }

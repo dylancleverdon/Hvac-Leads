@@ -52,19 +52,17 @@ test/          Unit tests for the above (no device/emulator needed)
 `assets/data/seattle_hvac_licenses.json` is a bundled, offline snapshot of
 Seattle's public "Active Business License Tax Certificate" records, filtered
 to NAICS code `238220` ("Plumbing, Heating, and Air-Conditioning
-Contractors"). It supplements OSM search with real government license
-records — covers the whole Puget Sound metro (Seattle, Tacoma, Everett,
-Kent, Auburn, and more), not just Seattle proper.
+Contractors") and then to just the ~220 of those whose business/trade name
+self-identifies as HVAC/AC/refrigeration (heating, cooling, furnace, duct,
+air conditioning, refrigeration, or "AC" as its own word) — NAICS 238220
+lumps plumbing in with HVAC with no way to separate them by code alone, and
+plain plumbing isn't relevant to HVAC-trade-school job hunting, so it's
+excluded rather than just labeled. It supplements OSM search with real
+government license records — covers the whole Puget Sound metro (Seattle,
+Tacoma, Everett, Kent, Auburn, and more), not just Seattle proper.
 
 A few things worth knowing:
 
-- **NAICS 238220 mixes plumbing and HVAC** — there's no official code that
-  separates them. Every entry is tagged `likelyHvac: true/false` based on
-  whether the business/trade name self-identifies as HVAC (heating,
-  cooling, furnace, duct, air conditioning); the Search screen shows this
-  as "Likely HVAC" vs. "Licensed (Plumbing/HVAC)" per result. Nothing is
-  filtered out — a plain plumber with a generic name still shows up, just
-  labeled as what it actually is.
 - **Phone numbers are from the license registration**, not verified current
   contact info — the Company Detail screen shows this caveat on every
   license-sourced entry.
@@ -75,13 +73,14 @@ A few things worth knowing:
   rate limits, unlike the live OSM search.
 
 To refresh this data (e.g. a newer license export): regenerate
-`assets/data/seattle_hvac_licenses_raw.json` (name/address/phone/NAICS
-filtered from the source CSV, no coordinates), then run the
+`assets/data/seattle_hvac_licenses_raw.json` (NAICS-238220 rows filtered
+further to the HVAC/AC/refrigeration name match, with name/address/phone
+projected from the source CSV, no coordinates yet), then run the
 "Geocode License Data" GitHub Actions workflow (Actions → that workflow →
 "Run workflow"). It geocodes every address via Nominatim at its ~1 req/sec
-fair-use limit (~15-20 minutes for ~950 rows) and commits the result back
-to the branch. It's separate from the release workflow so a data refresh
-never blocks a normal APK build.
+fair-use limit (a few minutes for ~220 rows) and commits the result back to
+the branch. It's separate from the release workflow so a data refresh never
+blocks a normal APK build.
 
 ## Building it yourself
 

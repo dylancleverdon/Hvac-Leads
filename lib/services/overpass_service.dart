@@ -87,7 +87,8 @@ class OverpassService {
     // Case-insensitive (the ",i" flag) since Overpass regex matching is
     // case-sensitive by default and business names aren't consistently
     // capitalized ("Acme Hvac", "ABC HEATING", etc).
-    const nameRegex = 'HVAC|heating|cooling|furnace|duct|air[- ]?condition';
+    const nameRegex =
+        'HVAC|heating|cooling|furnace|duct|air[- ]?condition|refrigerat';
     return '''
 [out:json][timeout:25];
 (

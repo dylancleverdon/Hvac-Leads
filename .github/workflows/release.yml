@@ -57,24 +57,48 @@ jobs:
       # it as an update rather than a conflicting package. The keystore is
       # generated once locally (see README) and stored base64-encoded as a
       # repo secret; it's decoded here only for the duration of the build.
+      #
+      # If that secret hasn't been set up yet, this falls back to generating
+      # a one-off keystore right here in the runner (no secret needed at all)
+      # so a downloadable, installable APK is never blocked on that setup
+      # step. The tradeoff: a release built with the fallback key won't
+      # install as a seamless *update* over a release built with a different
+      # fallback key (Android requires matching signatures) — only real
+      # consequence is you might need to uninstall the old one first. Once
+      # the persistent keystore secret is added, every release after that
+      # signs consistently and updates seamlessly.
       - name: Set up release signing
+        id: signing
         env:
           RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: |
-          if [ -z "$RELEASE_KEYSTORE_BASE64" ]; then
-            echo "::error::RELEASE_KEYSTORE_BASE64 secret is not set. See README for one-time setup."
-            exit 1
-          fi
-          echo "$RELEASE_KEYSTORE_BASE64" | base64 -d > android/app/release.keystore
-          cat > android/key.properties <<EOF
+          if [ -n "$RELEASE_KEYSTORE_BASE64" ]; then
+            echo "mode=persistent" >> "$GITHUB_OUTPUT"
+            echo "$RELEASE_KEYSTORE_BASE64" | base64 -d > android/app/release.keystore
+            cat > android/key.properties <<EOF
           storeFile=release.keystore
           storePassword=$RELEASE_KEYSTORE_PASSWORD
           keyAlias=$RELEASE_KEY_ALIAS
           keyPassword=$RELEASE_KEY_PASSWORD
           EOF
+          else
+            echo "::warning::No RELEASE_KEYSTORE_BASE64 secret set — signing with a one-off key generated for this run only. See README to switch to a persistent key so future releases update in place."
+            echo "mode=fallback" >> "$GITHUB_OUTPUT"
+            keytool -genkeypair -v \
+              -keystore android/app/release.keystore \
+              -alias ci-fallback -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass ci-fallback-pass -keypass ci-fallback-pass \
+              -dname "CN=HVAC Leads CI, OU=CI, O=HVAC Leads, C=US"
+            cat > android/key.properties <<EOF
+          storeFile=release.keystore
+          storePassword=ci-fallback-pass
+          keyAlias=ci-fallback
+          keyPassword=ci-fallback-pass
+          EOF
+          fi
 
       - name: Build release APK
         run: flutter build apk --release
@@ -84,4 +108,7 @@ jobs:
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           generate_release_notes: true
+          append_body: true
+          body: |
+            ${{ steps.signing.outputs.mode == 'fallback' && '⚠️ Signed with a temporary, one-off key (no persistent RELEASE_KEYSTORE_BASE64 secret configured yet). Installable now; future releases may not update in place over this one until the persistent key is set up — see README.' || '' }}
           files: build/app/outputs/flutter-apk/app-release.apk

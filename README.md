@@ -65,6 +65,13 @@ receive in-app updates from CI-built release APKs (Android requires matching
 signatures — see below). For the real workflow, do the one-time release
 signing setup first, then install a release build from the start.
 
+Note: `.github/workflows/release.yml` also works with zero setup — if the
+`RELEASE_KEYSTORE_BASE64` secret below isn't configured yet, it signs with a
+one-off key generated fresh in that CI run so you always get an installable
+APK. The only thing you lose without the persistent key is seamless in-place
+updates between releases (you'd need to uninstall the old APK first). Do the
+setup below whenever you want that to stop being the case.
+
 ## One-time setup: release signing (required for in-app updates)
 
 Android only treats an install as an "update" (keeping your data, no

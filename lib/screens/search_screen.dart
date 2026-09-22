@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
@@ -25,11 +27,34 @@ class _SearchScreenState extends State<SearchScreen> {
   Set<String> _savedOsmIds = {};
   bool _loading = false;
   String? _error;
+  int _cooldownSeconds = 0;
+  Timer? _cooldownTimer;
 
   @override
   void initState() {
     super.initState();
     _loadHome();
+  }
+
+  @override
+  void dispose() {
+    _cooldownTimer?.cancel();
+    super.dispose();
+  }
+
+  // A short pause between searches is a good citizen towards the free,
+  // shared Overpass mirrors and reduces how often we hit their rate limit.
+  void _startCooldown() {
+    setState(() => _cooldownSeconds = 5);
+    _cooldownTimer?.cancel();
+    _cooldownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+      setState(() => _cooldownSeconds--);
+      if (_cooldownSeconds <= 0) timer.cancel();
+    });
   }
 
   Future<void> _loadHome() async {
@@ -60,9 +85,14 @@ class _SearchScreenState extends State<SearchScreen> {
         _mapController.move(ll.LatLng(_home!.lat, _home!.lng), 11);
       }
     } catch (e) {
-      setState(() => _error = 'Search failed: $e');
+      setState(() {
+        _error = e is OverpassRateLimitException ? '$e' : 'Search failed: $e';
+      });
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (mounted) {
+        setState(() => _loading = false);
+        _startCooldown();
+      }
     }
   }
 
@@ -134,7 +164,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton.extended(
-          onPressed: _loading ? null : _search,
+          onPressed: (_loading || _cooldownSeconds > 0) ? null : _search,
           icon: _loading
               ? const SizedBox(
                   width: 18,
@@ -143,7 +173,11 @@ class _SearchScreenState extends State<SearchScreen> {
                       strokeWidth: 2, color: Colors.white),
                 )
               : const Icon(Icons.search),
-          label: Text(_loading ? 'Searching…' : 'Search Nearby'),
+          label: Text(_loading
+              ? 'Searching…'
+              : _cooldownSeconds > 0
+                  ? 'Wait ${_cooldownSeconds}s'
+                  : 'Search Nearby'),
         ),
       ),
     );

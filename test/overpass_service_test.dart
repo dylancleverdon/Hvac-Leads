@@ -62,6 +62,54 @@ void main() {
     expect(second.email, 'hi@heat.test');
   });
 
+  test('throws OverpassRateLimitException when every endpoint returns 429',
+      () async {
+    final client = MockClient((request) async => http.Response(
+          'rate limited',
+          429,
+          headers: {'retry-after': '0'}, // keep the test fast
+        ));
+    final service = OverpassService(client: client);
+
+    expect(
+      () => service.searchNearby(lat: 40.0, lng: -75.0, radiusMiles: 15),
+      throwsA(isA<OverpassRateLimitException>()),
+    );
+  });
+
+  test('recovers if an earlier endpoint 429s but a later one succeeds',
+      () async {
+    var callCount = 0;
+    final client = MockClient((request) async {
+      callCount++;
+      if (callCount == 1) {
+        return http.Response('rate limited', 429,
+            headers: {'retry-after': '0'});
+      }
+      return http.Response(
+          jsonEncode({
+            'elements': [
+              {
+                'type': 'node',
+                'id': 42,
+                'lat': 3.0,
+                'lon': 4.0,
+                'tags': {'name': 'Recovered HVAC'},
+              },
+            ],
+          }),
+          200);
+    });
+    final service = OverpassService(client: client);
+
+    final results =
+        await service.searchNearby(lat: 3.0, lng: 4.0, radiusMiles: 10);
+
+    expect(callCount, 2);
+    expect(results, hasLength(1));
+    expect(results.first.name, 'Recovered HVAC');
+  });
+
   test('falls back to the second endpoint if the first fails', () async {
     var callCount = 0;
     final client = MockClient((request) async {

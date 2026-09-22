@@ -42,6 +42,17 @@ class OverpassResult {
   }
 }
 
+/// Thrown when every configured Overpass mirror responded 429 (rate
+/// limited) — distinct from a generic failure so the UI can show something
+/// actionable instead of a raw exception string.
+class OverpassRateLimitException implements Exception {
+  const OverpassRateLimitException();
+
+  @override
+  String toString() =>
+      "OpenStreetMap's free search is busy right now — wait a bit and try again.";
+}
+
 /// Searches OpenStreetMap for HVAC-related businesses near a point using the
 /// free, keyless Overpass API.
 ///
@@ -54,10 +65,13 @@ class OverpassService {
   OverpassService({http.Client? client}) : _client = client ?? http.Client();
 
   // Public Overpass mirrors, tried in order, since the shared instances
-  // occasionally rate-limit or go down.
+  // occasionally rate-limit or go down. More mirrors means a single
+  // instance rate-limiting this IP is much less likely to fail the search.
   static const _endpoints = [
     'https://overpass-api.de/api/interpreter',
     'https://overpass.kumi.systems/api/interpreter',
+    'https://overpass.openstreetmap.ru/api/interpreter',
+    'https://overpass.osm.ch/api/interpreter',
   ];
 
   final http.Client _client;
@@ -86,20 +100,51 @@ out center tags;
     final query = _buildQuery(lat, lng, radiusMeters);
 
     Object? lastError;
+    var hitRateLimit = false;
+    var hitOtherFailure = false;
+
     for (final endpoint in _endpoints) {
       try {
         final response = await _client.post(Uri.parse(endpoint),
             body: {'data': query}).timeout(const Duration(seconds: 30));
+
+        if (response.statusCode == 429) {
+          hitRateLimit = true;
+          lastError = Exception('Overpass returned 429');
+          await _waitAfterRateLimit(response);
+          continue;
+        }
         if (response.statusCode != 200) {
           throw Exception('Overpass returned ${response.statusCode}');
         }
         return _parse(response.body);
       } catch (e) {
+        hitOtherFailure = true;
         lastError = e;
         continue;
       }
     }
+
+    // Only ever saw 429s (no real errors) — that's a distinct, actionable
+    // condition worth surfacing differently than "something went wrong".
+    if (hitRateLimit && !hitOtherFailure) {
+      throw const OverpassRateLimitException();
+    }
     throw Exception('All Overpass endpoints failed: $lastError');
+  }
+
+  /// Waits briefly before trying the next mirror after a 429, respecting
+  /// the server's `Retry-After` header when it provides one (capped so the
+  /// UI never stalls for long — moving to a different mirror is usually
+  /// faster than waiting out one instance's limit anyway).
+  Future<void> _waitAfterRateLimit(http.Response response) async {
+    var waitSeconds = 1.5;
+    final retryAfter = response.headers['retry-after'];
+    final parsed = retryAfter != null ? int.tryParse(retryAfter) : null;
+    if (parsed != null) {
+      waitSeconds = parsed.clamp(0, 5).toDouble();
+    }
+    await Future.delayed(Duration(milliseconds: (waitSeconds * 1000).round()));
   }
 
   List<OverpassResult> _parse(String body) {

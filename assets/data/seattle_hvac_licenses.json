@@ -1,0 +1,1582 @@
+[
+  {
+    "id": "0008593030775116",
+    "name": "A&R HEATING & AIR CONDITIONING LLC",
+    "address": "18213 168TH WAY SE, RENTON WA 98058-8861",
+    "phone": "(425) 445-7488",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4386184,
+    "lng": -122.1169404
+  },
+  {
+    "id": "0008370660751651",
+    "name": "A-ONE REFRIGERATION & HEATING INC",
+    "address": "910 N 20TH AVE, PASCO WA 99301-4856",
+    "phone": "(509) 586-7613",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.2370674,
+    "lng": -119.1175438
+  },
+  {
+    "id": "0007934290706117",
+    "name": "ABSOLUTE HEATING & COOLING INC",
+    "address": "38215 42ND AVE S, AUBURN WA 98001-8927",
+    "phone": "(253) 740-1621",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2589116,
+    "lng": -122.282701
+  },
+  {
+    "id": "0008553530770955",
+    "name": "ACE HVAC SERVICE",
+    "address": "2466 S SPENCER ST, SEATTLE WA 98108-3151",
+    "phone": "(206) 354-0772",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5479192,
+    "lng": -122.2979331
+  },
+  {
+    "id": "0008783550795206",
+    "name": "ADAPTIVE HVAC LLC",
+    "address": "15117 MAIN ST # 205, MILL CREEK WA 98012-9035",
+    "phone": "(425) 263-2102",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8609228,
+    "lng": -122.2202242
+  },
+  {
+    "id": "0008717820788202",
+    "name": "AFFORDABLE HEATING & AIR CONDITIONING",
+    "address": "13331 47TH AVE SE, MILL CREEK WA 98012-8970",
+    "phone": "(425) 691-0764",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8764388,
+    "lng": -122.1689222
+  },
+  {
+    "id": "0008942150811995",
+    "name": "AFTER HOURS HEATING & AC",
+    "address": "2207 NE 198TH CT, SHORELINE WA 98155-1333",
+    "phone": "(425) 777-6579",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7729072,
+    "lng": -122.306007
+  },
+  {
+    "id": "0008478430763064",
+    "name": "HVAC",
+    "address": "9639B FIRDALE AVE, EDMONDS WA 98020-6519",
+    "phone": "(206) 259-0890",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7798435,
+    "lng": -122.3650197
+  },
+  {
+    "id": "0008942450812026",
+    "name": "AIRGATE HVAC LLC",
+    "address": "7223 118TH ST E, PUYALLUP WA 98373-4607",
+    "phone": "(253) 247-7948",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1493313,
+    "lng": -122.2958209
+  },
+  {
+    "id": "0007813610693566",
+    "name": "AIRTIGHT HEATIG & AIR CONDITIONING LLC",
+    "address": "5841 89TH AVE SE, OLYMPIA WA 98513-8859",
+    "phone": "(360) 455-0455",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.9585495,
+    "lng": -122.8049903
+  },
+  {
+    "id": "0008568370772514",
+    "name": "ALEX HEATING LLC",
+    "address": "19521 SE 320TH ST, KENT WA 98042-9739",
+    "phone": "(253) 205-6717",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3145429,
+    "lng": -122.082764
+  },
+  {
+    "id": "0008340750748518",
+    "name": "ALEXANDER'S HEATING AND AIR CONDITIONING LLC",
+    "address": "11933 124TH AVE NE, KIRKLAND WA 98034",
+    "phone": "(425) 825-3600",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7064737,
+    "lng": -122.1778976
+  },
+  {
+    "id": "0005785220584680",
+    "name": "ALL CLIMATE HEATING & AIR CONDITIONING",
+    "address": "14907 NE 95TH ST, REDMOND WA 98052",
+    "phone": "(425) 746-3077",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.6858422,
+    "lng": -122.1422368
+  },
+  {
+    "id": "0007156820624097",
+    "name": "ALL HITECH HEATING & AIR CONDITIONING LLC",
+    "address": "4024 JONES AVE NE, RENTON WA 98056-1629",
+    "phone": "(425) 747-0677",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5280876,
+    "lng": -122.1959019
+  },
+  {
+    "id": "0005315080534379",
+    "name": "ALL STAR HEATING & AIR CONDITIONING",
+    "address": "4458 337TH PL SE, FALL CITY WA 98024",
+    "phone": "(425) 222-7652",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5637975,
+    "lng": -121.8920774
+  },
+  {
+    "id": "0008050480718203",
+    "name": "ALLRED HEATING",
+    "address": "505 F ST SE, AUBURN WA 98002-6127",
+    "phone": "(206) 359-2164",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.302833,
+    "lng": -122.2216207
+  },
+  {
+    "id": "0007287730638096",
+    "name": "ALPHA HEATING & AIR CONDITIONING INC",
+    "address": "5716 149TH AVE SE, BELLEVUE WA 98006-4605",
+    "phone": "(425) 643-0368",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5513895,
+    "lng": -122.1392423
+  },
+  {
+    "id": "0008188360732539",
+    "name": "AMBIENT AIR HEATING LLC",
+    "address": "14058 24TH AVE NE, SEATTLE WA 98125-3402",
+    "phone": "(206) 364-1965",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7315582,
+    "lng": -122.3029353
+  },
+  {
+    "id": "0008635520779557",
+    "name": "AMBIENT HEATING AND AIR CONDITIONING",
+    "address": "8616 DELRIDGE WAY SW, SEATTLE WA 98106-2228",
+    "phone": "(253) 217-9876",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.525961,
+    "lng": -122.3599346
+  },
+  {
+    "id": "0007370690646968",
+    "name": "AMERICOOL HEATING & AIR CONDITIONING",
+    "address": "21822 OLD HIGHWAY 99 SW, CENTRALIA WA 98531-9649",
+    "phone": "(360) 273-3300",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.77087,
+    "lng": -123.0062533
+  },
+  {
+    "id": "0008856970802947",
+    "name": "ART HEATING AND COOLING LLC",
+    "address": "30329 21ST AVE SW, FEDERAL WAY WA 98023-2381",
+    "phone": "(253) 632-9739",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3297855,
+    "lng": -122.3612218
+  },
+  {
+    "id": "0008907920808428",
+    "name": "ARTISTIC HEATING LLC",
+    "address": "910 126TH ST SE, EVERETT WA 98208-6322",
+    "phone": "(425) 280-8719",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8836965,
+    "lng": -122.2192361
+  },
+  {
+    "id": "0008755720792257",
+    "name": "ASTRO HEATING & AIR CONDITIONING LLC",
+    "address": "15016 78TH AVE NE, KENMORE WA 98028-4632",
+    "phone": "(206) 618-4645",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7374495,
+    "lng": -122.2368833
+  },
+  {
+    "id": "0007321060641621",
+    "name": "ATMOSPHERIC HEATING INC",
+    "address": "8406 70TH ST NE, MARYSVILLE WA 98270-8081",
+    "phone": "(425) 308-0337",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0592493,
+    "lng": -122.1184689
+  },
+  {
+    "id": "0008038770716990",
+    "name": "RAPID HEATING & COOLING",
+    "address": "5607 162ND AVE E, SUMNER WA 98309",
+    "phone": "(360) 878-5443",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2061884,
+    "lng": -122.213134
+  },
+  {
+    "id": "0008839340801126",
+    "name": "AURORA HEATING & COOLING LLC",
+    "address": "953 INDUSTRY DR, TUKWILA WA 98188-3413",
+    "phone": "(425) 600-9900",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4494629,
+    "lng": -122.2490706
+  },
+  {
+    "id": "0008736840790245",
+    "name": "AZ HEATING & AIR LLC",
+    "address": "7208 RIVERSIDE DR E, SUMNER WA 98390-2539",
+    "phone": "(253) 376-6489",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1912265,
+    "lng": -122.2288529
+  },
+  {
+    "id": "0007543680665268",
+    "name": "BEAR PLUMBER & HEATING INC",
+    "address": "3125 GRANDVIEW DR W, UNIVERSITY PLACE WA 98466-2626",
+    "phone": "(206) 734-8444",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2305123,
+    "lng": -122.5495408
+  },
+  {
+    "id": "0008692250785517",
+    "name": "BEAVER HEATING & AIR LLC",
+    "address": "11912 20TH ST NE, LAKE STEVENS WA 98258-9271",
+    "phone": "(360) 502-5203",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0155155,
+    "lng": -122.0697311
+  },
+  {
+    "id": "0008110460724454",
+    "name": "BEES PLUMBING, HEATING AND SEWER",
+    "address": "2401 SW ALASKA ST, SEATTLE WA 98106-1384",
+    "phone": "(206) 660-3474",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5607506,
+    "lng": -122.3633062
+  },
+  {
+    "id": "0008627600778723",
+    "name": "BEN HEATING & A/C LLC",
+    "address": "11827 57TH AVE NE, MARYSVILLE WA 98271",
+    "phone": "(425) 343-8192",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.1020276,
+    "lng": -122.1538492
+  },
+  {
+    "id": "0007973590710195",
+    "name": "BLACK LION HEATING & AIR CONDITIONING",
+    "address": "11001 118TH PL NE, KIRKLAND WA 98033-5053",
+    "phone": "(425) 814-3944",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.6986598,
+    "lng": -122.1836329
+  },
+  {
+    "id": "0007893960701899",
+    "name": "BOBS HEATING & AIR CONDITIONING LLC",
+    "address": "14148 NE 190TH ST, WOODINVILLE WA 98072-8437",
+    "phone": "(425) 747-1630",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7650665,
+    "lng": -122.1510149
+  },
+  {
+    "id": "0007796040691738",
+    "name": "DOUBLE BOND HEATING & AIR",
+    "address": "610 NW 78TH ST, SEATTLE WA 98117-4048",
+    "phone": "(206) 255-9805",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.6856728,
+    "lng": -122.3639391
+  },
+  {
+    "id": "0005683810573885",
+    "name": "BRENNAN HEATING & AC LLC",
+    "address": "4601 S 134TH PL, TUKWILA WA 98168-3240",
+    "phone": "(206) 248-7900",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4835029,
+    "lng": -122.2757913
+  },
+  {
+    "id": "0007703980682117",
+    "name": "BROTHERS HEATING",
+    "address": "13404 SE 282ND ST, KENT WA 98042-3909",
+    "phone": "(206) 550-8861",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3487402,
+    "lng": -122.1625843
+  },
+  {
+    "id": "0008560420771683",
+    "name": "BRUSH HEATING AND COOLING LLC",
+    "address": "209 1ST AVE SW, HILLSBORO ND 58045",
+    "phone": "(253) 886-1272",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.401922,
+    "lng": -97.0644062
+  },
+  {
+    "id": "0008642980780347",
+    "name": "C & C OLYMPIC HEATING INC",
+    "address": "14411 235TH ST SE, SNOHOMISH WA 98296-7836",
+    "phone": "(425) 670-0277",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7841305,
+    "lng": -122.0346003
+  },
+  {
+    "id": "0007797360691872",
+    "name": "CAPITAL HEATING & COOLING",
+    "address": "1218 CARPENTER RD SE, LACEY WA 98503-2411",
+    "phone": "(360) 491-7450",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.0349017,
+    "lng": -122.7999975
+  },
+  {
+    "id": "0007980300710884",
+    "name": "CASCADE ENERGY SERVICES HEATING AND COOLING LLC",
+    "address": "1125 VERNON RD, LAKE STEVENS WA 98258-9412",
+    "phone": "(425) 591-2778",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0055798,
+    "lng": -122.1063952
+  },
+  {
+    "id": "0005709870576648",
+    "name": "CHINOOK REFRIGERATION INC",
+    "address": "21921 78TH AVE E, GRAHAM WA 98338",
+    "phone": "(253) 846-6596",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.0572263,
+    "lng": -122.3260691
+  },
+  {
+    "id": "0008501500765493",
+    "name": "CIMCO REFRIGERATION INC",
+    "address": "2502 COMMERCIAL PARK DR, MOBILE AL 36606-2036",
+    "phone": "(251) 471-2425",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 30.6696142,
+    "lng": -88.0998965
+  },
+  {
+    "id": "0008788640795736",
+    "name": "CLEAN ATMOSPHERE AC & HEATING",
+    "address": "12321 35TH ST E, EDGEWOOD WA 98372-2450",
+    "phone": "(206) 353-4998",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2259323,
+    "lng": -122.2649706
+  },
+  {
+    "id": "0008466720761800",
+    "name": "CLIMATE CONTROL EXPERTS HVAC LLC",
+    "address": "4346 S 347TH ST, AUBURN WA 98001",
+    "phone": "(253) 263-9547",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2904623,
+    "lng": -122.2776455
+  },
+  {
+    "id": "0008754680792148",
+    "name": "COMFORT QUALITY HEATING & AC INC",
+    "address": "1339 EVANS AVE, BUTTE MT 59701",
+    "phone": "(253) 239-7629",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 45.9859048,
+    "lng": -112.5194832
+  },
+  {
+    "id": "0007725500684414",
+    "name": "COMPLETE COMFORT HEATING & A C LLC",
+    "address": "21680 227TH PL SE, MAPLE VALLEY WA 98038-8020",
+    "phone": "(425) 518-5878",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.34987,
+    "lng": -122.0382963
+  },
+  {
+    "id": "0005136210514917",
+    "name": "COMPLETE HEATING & AIR CONDITIONING INC",
+    "address": "15627 SE 178TH ST, RENTON WA 98058",
+    "phone": "(425) 254-0031",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.442339,
+    "lng": -122.1322916
+  },
+  {
+    "id": "0008775670794370",
+    "name": "CONSISTENT HEATING AND COOLING",
+    "address": "36320 55TH AVE S, AUBURN WA 98001",
+    "phone": "(916) 695-8467",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2757472,
+    "lng": -122.2661099
+  },
+  {
+    "id": "0007960180708813",
+    "name": "COREYS HEATING AND AIR LLC",
+    "address": "5721 112TH PL SW, MUKILTEO WA 98275-4837",
+    "phone": "(206) 313-5831",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8966353,
+    "lng": -122.3106775
+  },
+  {
+    "id": "0007281550637436",
+    "name": "COZY HEATING INC",
+    "address": "20221 67TH AVE NE, ARLINGTON WA 98223-7880",
+    "phone": "(360) 435-4904",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.1785287,
+    "lng": -122.1404539
+  },
+  {
+    "id": "0007894210701924",
+    "name": "CSIHVAC INC",
+    "address": "3534 N SHIRLEY ST, TACOMA WA 98407",
+    "phone": "(253) 224-8301",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2809982,
+    "lng": -122.5108047
+  },
+  {
+    "id": "0008734990790055",
+    "name": "BLUE SKY HEATING AND AIR CONDITIONING",
+    "address": "8521 110TH STREET CT E, PUYALLUP WA 98373-6006",
+    "phone": "(253) 691-8513",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1563862,
+    "lng": -122.315793
+  },
+  {
+    "id": "0008700550786383",
+    "name": "HVAC SERVICE PROS",
+    "address": "19005 104TH AVE E, PUYALLUP WA 98374-9567",
+    "phone": "(253) 361-6236",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1466825,
+    "lng": -122.2904703
+  },
+  {
+    "id": "0008786470795503",
+    "name": "DMS AIR CONDITIONING INC",
+    "address": "225 S MONTE VISTA AVE, SAN DIMAS CA 91773-3026",
+    "phone": "(626) 969-7700",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 34.105005,
+    "lng": -117.80941
+  },
+  {
+    "id": "0008750190791681",
+    "name": "DONE RIGHT HEATING AND AIR LLC",
+    "address": "8203 LOPEZ DR, PASCO WA 99301",
+    "phone": "(509) 840-1771",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.2733632,
+    "lng": -119.1976519
+  },
+  {
+    "id": "0008844700801678",
+    "name": "DRIFTWOOD PLUMBING AND HEATING",
+    "address": "23210 188TH ST E, ORTING WA 98360-9182",
+    "phone": "(253) 426-5530",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.0846335,
+    "lng": -122.1211879
+  },
+  {
+    "id": "0008770950793864",
+    "name": "L J HVAC",
+    "address": "3106 154TH ST SW, LYNNWOOD WA 98087-2433",
+    "phone": "(425) 269-8153",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8589435,
+    "lng": -122.2975779
+  },
+  {
+    "id": "0008660590782194",
+    "name": "ECOSPARK HEATING & COOLING",
+    "address": "604 N 45TH ST, SEATTLE WA 98103-6405",
+    "phone": "(206) 200-2980",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.6615995,
+    "lng": -122.351075
+  },
+  {
+    "id": "0005903330597392",
+    "name": "ERICKSON REFRIGERATION LLC",
+    "address": "1411 20TH ST NW, AUBURN WA 98001-3433",
+    "phone": "(253) 333-7294",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.326397,
+    "lng": -122.2506743
+  },
+  {
+    "id": "0007216050630453",
+    "name": "WASHINGTON NATURAL GAS HEATING & AIR CONDITIONING",
+    "address": "2208 158TH ST SE, MILL CREEK WA 98012-5824",
+    "phone": "(425) 347-1414",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8546689,
+    "lng": -122.2025275
+  },
+  {
+    "id": "0008858050803062",
+    "name": "FINE HVAC",
+    "address": "29714 61ST AVE E, GRAHAM WA 98338-7943",
+    "phone": "(253) 433-5615",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.9861056,
+    "lng": -122.3517585
+  },
+  {
+    "id": "0007750840687047",
+    "name": "FISCHER HEATING & AIR INC",
+    "address": "6608 220TH ST SW, MOUNTLAKE TERRACE WA 98043-2120",
+    "phone": "(425) 974-1003",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7993313,
+    "lng": -122.3232624
+  },
+  {
+    "id": "0008642580780307",
+    "name": "FROST HEATING & COOLING LLC",
+    "address": "11022 28TH ST E, EDGEWOOD WA 98372-1805",
+    "phone": "(253) 240-9898",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2318195,
+    "lng": -122.2820865
+  },
+  {
+    "id": "0008946410812451",
+    "name": "G & G HEATING & AIR CONDITIONING",
+    "address": "8140 OLD HIGHWAY 99 SE, TUMWATER WA 98501-5735",
+    "phone": "(360) 943-0964",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.9688806,
+    "lng": -122.8875665
+  },
+  {
+    "id": "0008551040770690",
+    "name": "GENESIS HVAC PERFORMANCE LLC",
+    "address": "3221 163RD AVENUE E, LAKE TAPPS WA 98391-9588",
+    "phone": "(951) 400-2475",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2274455,
+    "lng": -122.211351
+  },
+  {
+    "id": "0008772950794079",
+    "name": "GLACIER HEATING & COOLING LLC",
+    "address": "10621 24TH ST SE, LAKE STEVENS WA 98258-5664",
+    "phone": "(425) 466-1536",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9749454,
+    "lng": -122.0883917
+  },
+  {
+    "id": "0007796890691824",
+    "name": "GREEN CITY HEATING",
+    "address": "311 3RD ST NE, AUBURN WA 98002-5032",
+    "phone": "(206) 227-6616",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3102755,
+    "lng": -122.2252335
+  },
+  {
+    "id": "0005909100597987",
+    "name": "HAAS HEATING & AIRCONDITIONING",
+    "address": "29450 SE 371ST ST, ENUMCLAW WA 98022",
+    "phone": "(206) 371-5413",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.270452,
+    "lng": -121.9495386
+  },
+  {
+    "id": "0001333950135007",
+    "name": "NORTHEND HOME HEATING",
+    "address": "17045 14TH AVE NE, SHORELINE WA 98155",
+    "phone": "(206) 367-6055",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7533277,
+    "lng": -122.3144217
+  },
+  {
+    "id": "0008764010793123",
+    "name": "HAWKS HEATING AND AIR",
+    "address": "1305 PONDEROSA AVE, SEVEN BAYS WA 99122-8756",
+    "phone": "(206) 867-0086",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.849967,
+    "lng": -118.34158
+  },
+  {
+    "id": "0008643880780447",
+    "name": "HEATING & COOLING NW LLC",
+    "address": "2207 LUNDQUIST LN, LAKE STEVENS WA 98258-9540",
+    "phone": "(425) 367-3444",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0175917,
+    "lng": -122.0678447
+  },
+  {
+    "id": "0008648240780909",
+    "name": "HEATING & RADIANT LLC",
+    "address": "405 S 7TH ST # 201, RENTON WA 98057-2566",
+    "phone": "(206) 334-5551",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4799078,
+    "lng": -122.2034496
+  },
+  {
+    "id": "0008123120725756",
+    "name": "HEATING WORKS LLC",
+    "address": "19926 YORK RD, BOTHELL WA 98012",
+    "phone": "(206) 310-0705",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8146984,
+    "lng": -122.1823469
+  },
+  {
+    "id": "0008823010799412",
+    "name": "HEATWAVE HEATING & AIR LLC",
+    "address": "35638 14TH AVE SW, FEDERAL WAY WA 98023-7242",
+    "phone": "(253) 245-8975",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2814161,
+    "lng": -122.3525968
+  },
+  {
+    "id": "0008551590770745",
+    "name": "HOME COMFORT HEATING & COOLING",
+    "address": "28255 132ND AVE SE, AUBURN WA 98092-9336",
+    "phone": "(253) 632-8660",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3472134,
+    "lng": -122.165848
+  },
+  {
+    "id": "0005665370571855",
+    "name": "ALL POINTS HEATING & FIREPLACE",
+    "address": "4332 CHENNAULT BEACH RD, MUKILTEO WA 98275-5097",
+    "phone": "(425) 821-3333",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8989351,
+    "lng": -122.2921288
+  },
+  {
+    "id": "0007053640613045",
+    "name": "HP PLUMBING & HEATING INC",
+    "address": "3916 214TH ST SW, MOUNTLAKE TERRACE WA 98043",
+    "phone": "(206) 550-5575",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8041532,
+    "lng": -122.2863111
+  },
+  {
+    "id": "0008508340766228",
+    "name": "INFINITY HEATING & AIR",
+    "address": "26212 68TH AVE E, GRAHAM WA 98338-9601",
+    "phone": "(253) 740-5135",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.0186416,
+    "lng": -122.3426084
+  },
+  {
+    "id": "0008913040808953",
+    "name": "INNOVA HEATING AND COOLING",
+    "address": "933 NW 25TH AVE, PORTLAND OR 97210-2829",
+    "phone": "(347) 247-1407",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 45.5293977,
+    "lng": -122.702759
+  },
+  {
+    "id": "0008229650736926",
+    "name": "INNOVATIVE AIR HEATING & AIR CONDITIONING",
+    "address": "30605 133RD AVE SE, AUBURN WA 98092-3276",
+    "phone": "(425) 518-9777",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3272413,
+    "lng": -122.1642229
+  },
+  {
+    "id": "0007469940657509",
+    "name": "WEST SEATTLE HEATING & AIR",
+    "address": "7719 35TH AVE SW, SEATTLE WA 98126",
+    "phone": null,
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5327504,
+    "lng": -122.3772
+  },
+  {
+    "id": "0008815450798604",
+    "name": "JN HEATING AND AIR",
+    "address": "23011 125TH AVE SE, KENT WA 98031-3675",
+    "phone": "(206) 610-3119",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3953913,
+    "lng": -122.1759306
+  },
+  {
+    "id": "0008938210811583",
+    "name": "ONE HOUR HEATING & AIR CONDITIONING",
+    "address": "823 HIAWATHA PL S, SEATTLE WA 98144-2823",
+    "phone": "(425) 331-9210",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5951667,
+    "lng": -122.3099006
+  },
+  {
+    "id": "0001543980156509",
+    "name": "JUST JIM PLUMBING & HEATING INC",
+    "address": "23508 SE 271ST PL, MAPLE VALLEY WA 98038-8111",
+    "phone": "(253) 638-3113",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3588518,
+    "lng": -122.0273075
+  },
+  {
+    "id": "0008916930809371",
+    "name": "SUPERIOR HEATING",
+    "address": "33057 38TH AVE S, FEDERAL WAY WA 98001-9666",
+    "phone": "(253) 228-4770",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3043168,
+    "lng": -122.2864641
+  },
+  {
+    "id": "0001822330184830",
+    "name": "KLEENAIR PRODUCTS CO INC",
+    "address": "14230 SE 98TH CT, CLACKAMAS OR 97015",
+    "phone": "(503) 653-6925",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 45.4200679,
+    "lng": -122.5611036
+  },
+  {
+    "id": "0005194700521170",
+    "name": "AVR REFRIGERATION & HEATING",
+    "address": "5927 SHAFFER AVE S, SEATTLE WA 98108",
+    "phone": null,
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.548997,
+    "lng": -122.2951002
+  },
+  {
+    "id": "0008823170799428",
+    "name": "LEO'S HEATING AND COOLING",
+    "address": "105 16TH AVENUE CT, MILTON WA 98354-9401",
+    "phone": "(253) 314-9275",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2568153,
+    "lng": -122.3138757
+  },
+  {
+    "id": "0008790990796000",
+    "name": "ARCTIC COOLING SOLUTION",
+    "address": "17917 NE 27TH ST, REDMOND WA 98052-5843",
+    "phone": "(214) 843-8341",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.634031,
+    "lng": -122.1009911
+  },
+  {
+    "id": "0005664340571749",
+    "name": "DURO HEATING SERVICE",
+    "address": "1429 AVENUE D, SNOHOMISH WA 98290-1742",
+    "phone": "(206) 244-2378",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9284724,
+    "lng": -122.0990342
+  },
+  {
+    "id": "0008907600808396",
+    "name": "LLAMA HEATING AND AIR CONDITIONING",
+    "address": "11012 CANYON RD E, PUYALLUP WA 98373-4200",
+    "phone": "(425) 903-2607",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1567553,
+    "lng": -122.3592236
+  },
+  {
+    "id": "0008732050789748",
+    "name": "M & T REFRIGERATION AND REPAIR",
+    "address": "610 N CHARLOTTE AVE, BREMERTON WA 98312-3504",
+    "phone": "(360) 801-3100",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5705001,
+    "lng": -122.6659021
+  },
+  {
+    "id": "0008938400811603",
+    "name": "MADCO HEATING AND COOLING LLC",
+    "address": "908 21ST ST NW, PUYALLUP WA 98371-3944",
+    "phone": "(253) 604-9137",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.199313,
+    "lng": -122.3222218
+  },
+  {
+    "id": "0008559500771587",
+    "name": "MAKRO HEATING LLC",
+    "address": "10019 SE 219TH PL, KENT WA 98031-2512",
+    "phone": "(206) 778-6509",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4055455,
+    "lng": -122.2063955
+  },
+  {
+    "id": "0008904620808085",
+    "name": "MARKS MINI SPLITS AC LLC",
+    "address": "15245 9TH AVE SW, BURIEN WA 98166-2135",
+    "phone": "(206) 886-1800",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.46544,
+    "lng": -122.3461262
+  },
+  {
+    "id": "0008706210786984",
+    "name": "NORTHWEST DUCTLESS",
+    "address": "1312 W WALNUT ST, YAKIMA WA 98902-3124",
+    "phone": "(509) 416-3775",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.5951408,
+    "lng": -120.5272193
+  },
+  {
+    "id": "0008212590735132",
+    "name": "MAX BOILER & HVAC",
+    "address": "4723 S 256TH ST, KENT WA 98032",
+    "phone": "(253) 304-0382",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3724593,
+    "lng": -122.2739697
+  },
+  {
+    "id": "0005880540594893",
+    "name": "CARMAC HEATING",
+    "address": "110 E 35TH ST, TACOMA WA 98404",
+    "phone": "(253) 228-6402",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2292336,
+    "lng": -122.431022
+  },
+  {
+    "id": "0008879220805286",
+    "name": "MERIDIAN HEATING & COOLING LLC",
+    "address": "14320 SE 285TH PL, KENT WA 98042-3940",
+    "phone": "(152) 205-6220",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3459353,
+    "lng": -122.1504516
+  },
+  {
+    "id": "0008533260768840",
+    "name": "MOUNTAIN HEATING & COOLING LLC",
+    "address": "3104 234TH ST E, SPANAWAY WA 98387-7472",
+    "phone": "(360) 893-2636",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.0435328,
+    "lng": -122.3875881
+  },
+  {
+    "id": "0008785630795415",
+    "name": "AIRBEST DUCT CLEANING",
+    "address": "18726 111TH AVE E, PUYALLUP WA 98374-8037",
+    "phone": "(253) 244-4697",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1990968,
+    "lng": -122.2824981
+  },
+  {
+    "id": "0005653370570573",
+    "name": "MOUNTAIN VALLEY HEATING & AIR CONDITIONING, INC.",
+    "address": "18631 106TH PL SE, RENTON WA 98055-8423",
+    "phone": "(425) 226-0080",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.435699,
+    "lng": -122.199758
+  },
+  {
+    "id": "0007572560668320",
+    "name": "RESOLUTE PLUMBING & HEATING",
+    "address": "14121 30TH AVE SE, MILL CREEK WA 98012-5001",
+    "phone": "(425) 275-3513",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8693663,
+    "lng": -122.1918332
+  },
+  {
+    "id": "0001207440122024",
+    "name": "NELSON HEATING",
+    "address": "16715 AURORA AVE N, SHORELINE WA 98133-5310",
+    "phone": "(206) 546-3800",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7509782,
+    "lng": -122.3461273
+  },
+  {
+    "id": "0007924840705139",
+    "name": "NEW ERA HVAC LLC",
+    "address": "122 10TH ST, GOLD BAR WA 98251",
+    "phone": "(425) 314-0544",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.852568,
+    "lng": -121.6923468
+  },
+  {
+    "id": "0008924530810159",
+    "name": "NEXUS HVAC LLC",
+    "address": "1031 215TH PL SE, BOTHELL WA 98021-7628",
+    "phone": "(206) 581-3734",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8029625,
+    "lng": -122.2182126
+  },
+  {
+    "id": "0007321970641716",
+    "name": "NORTH STAR HEATING & COOLING",
+    "address": "2710 NEWBERG RD, SNOHOMISH WA 98290",
+    "phone": "(888) 623-4822",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0212725,
+    "lng": -122.005307
+  },
+  {
+    "id": "0008682780784486",
+    "name": "NW HVAC MECHANICAL",
+    "address": "26441 SE 160TH ST, ISSAQUAH WA 98027-6909",
+    "phone": "(206) 765-0471",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.458186,
+    "lng": -121.9868333
+  },
+  {
+    "id": "0008361420750684",
+    "name": "OPTIMAL HVAC LLC",
+    "address": "13119 176TH AVE E, BONNEY LAKE WA 98391-4522",
+    "phone": "(206) 678-4068",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1313695,
+    "lng": -122.1957978
+  },
+  {
+    "id": "0008174760731100",
+    "name": "PALATIAL HEATING AC",
+    "address": "34719 KINSMAN RD E, ROY WA 98580-8304",
+    "phone": "(360) 400-1602",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.9410766,
+    "lng": -122.4057198
+  },
+  {
+    "id": "0007302260639658",
+    "name": "PATRIOT HEATING & AC INC",
+    "address": "25145 255TH PL SE, RAVENSDALE WA 98051",
+    "phone": "(253) 631-0601",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.376267,
+    "lng": -122.0037651
+  },
+  {
+    "id": "0000535240061954",
+    "name": "PERFORMANCE HEATING & AIR CONDITIONING LLC",
+    "address": "1012 CENTRAL AVE S, KENT WA 98032-6103",
+    "phone": "(206) 763-3899",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3708646,
+    "lng": -122.2293859
+  },
+  {
+    "id": "0008758140792512",
+    "name": "PHOENIX HEATING AND AIR LLC",
+    "address": "5162 FLAGLER RD, NORDLAND WA 98358-9690",
+    "phone": "(425) 800-6624",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0236168,
+    "lng": -122.6951889
+  },
+  {
+    "id": "0008606680776522",
+    "name": "PIMA HEATING AND COOLING",
+    "address": "18228 SE 136TH ST, RENTON WA 98059-7202",
+    "phone": "(206) 643-5785",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4807545,
+    "lng": -122.0969883
+  },
+  {
+    "id": "0008622300778177",
+    "name": "PK HEATING & COOLING LLC",
+    "address": "18021 AMBLESIDE, ARLINGTON WA 98223-5990",
+    "phone": "(360) 296-9048",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.1597728,
+    "lng": -122.1307435
+  },
+  {
+    "id": "0008584880774270",
+    "name": "PM HEATING LLC",
+    "address": "19811 2ND DR SE, BOTHELL WA 98012-7486",
+    "phone": "(425) 789-6139",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8035008,
+    "lng": -122.2283732
+  },
+  {
+    "id": "0005373860540738",
+    "name": "PORTERS REFRIGERATION",
+    "address": "214 SW 129TH ST, BURIEN WA 98146",
+    "phone": "(206) 579-4078",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4881865,
+    "lng": -122.3372279
+  },
+  {
+    "id": "0007431200653412",
+    "name": "PRECISION PLUMBING & HEATING",
+    "address": "155 SW 142ND ST, BURIEN WA 98166-1521",
+    "phone": "(206) 393-0681",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4760548,
+    "lng": -122.3362372
+  },
+  {
+    "id": "0008820220799125",
+    "name": "PRIME HVAC LLC",
+    "address": "920 E 49TH ST, TACOMA WA 98404-2809",
+    "phone": "(253) 232-7848",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2124368,
+    "lng": -122.417235
+  },
+  {
+    "id": "0008933000811050",
+    "name": "PRO QUALITY HEATING AND REFRIGERATION LLC",
+    "address": "4920 61ST DR NE, MARYSVILLE WA 98270-7552",
+    "phone": "(206) 601-5050",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0410972,
+    "lng": -122.148329
+  },
+  {
+    "id": "0007098060617754",
+    "name": "PSR HVAC & MECHANICAL SERVICES",
+    "address": "3132 NE 133RD ST, SEATTLE WA 98125-4423",
+    "phone": "(206) 367-2500",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7249771,
+    "lng": -122.293304
+  },
+  {
+    "id": "0008874080804730",
+    "name": "PURE AIR COOLING & HEATING",
+    "address": "12214 93RD AVE NE, KIRKLAND WA 98034-6203",
+    "phone": "(425) 540-8576",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.7099427,
+    "lng": -122.2176179
+  },
+  {
+    "id": "0007080230615854",
+    "name": "PUYALLUP HEATING & AIR CONDITIONING",
+    "address": "130 15TH ST SE, PUYALLUP WA 98372-3409",
+    "phone": "(253) 845-0581",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1905989,
+    "lng": -122.2744232
+  },
+  {
+    "id": "0007686400680288",
+    "name": "RADIANT PLUMBING & HEATING",
+    "address": "4516 S 8TH ST, TACOMA WA 98405-1208",
+    "phone": "(253) 548-6723",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2531939,
+    "lng": -122.4987027
+  },
+  {
+    "id": "0007494020660037",
+    "name": "RANGER HEATING & COOLING",
+    "address": "2010 48TH AVENUE E, FIFE WA 98424-2653",
+    "phone": "(253) 266-5700",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2375906,
+    "lng": -122.3647768
+  },
+  {
+    "id": "0008375540752155",
+    "name": "LIFETIME HEATING & AIR CONDITIONING",
+    "address": "1102 BONNEVILLE AVE, SNOHOMISH WA 98290-2080",
+    "phone": "(425) 359-5687",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9259226,
+    "lng": -122.1002804
+  },
+  {
+    "id": "0005927930599954",
+    "name": "RELLS REFRIGERATION AIR CONDITIONING & HEATING",
+    "address": "23203 28TH AVE S, DES MOINES WA 98198",
+    "phone": "(206) 484-6466",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3935659,
+    "lng": -122.2980725
+  },
+  {
+    "id": "0008737210790284",
+    "name": "RIDGELINE HEATING",
+    "address": "3727 109TH AVE NE, LAKE STEVENS WA 98258-9582",
+    "phone": "(425) 442-4038",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0255782,
+    "lng": -122.084233
+  },
+  {
+    "id": "0005506840554958",
+    "name": "RIGHT ON HEATING & SHEET METAL INC",
+    "address": "2213 131ST AVE NE, LAKE STEVENS WA 98258-9245",
+    "phone": "(425) 335-4207",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0179311,
+    "lng": -122.0542599
+  },
+  {
+    "id": "0005880570594897",
+    "name": "BEL KIRK HEATING & COOLING SERVICE",
+    "address": "902 10TH ST, SNOHOMISH WA 98290",
+    "phone": "(425) 359-6500",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9241464,
+    "lng": -122.0919586
+  },
+  {
+    "id": "0008879570805321",
+    "name": "OLYMPUS HEATING COOLING & REFRIGERATION",
+    "address": "705 E SMITH ST, KENT WA 98030-4625",
+    "phone": "(253) 346-4160",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3835118,
+    "lng": -122.2253984
+  },
+  {
+    "id": "0008941410811915",
+    "name": "TONY'S HEATING & AIR",
+    "address": "1530 S 15TH ST, SUNNYSIDE WA 98944-2513",
+    "phone": "(509) 391-9391",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.3114381,
+    "lng": -120.0005544
+  },
+  {
+    "id": "0008683730784583",
+    "name": "SEATTLE HEATING & COOLING LLC",
+    "address": "18640 68TH AVE S, KENT WA 98032-5100",
+    "phone": "(425) 282-6323",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4353877,
+    "lng": -122.2478393
+  },
+  {
+    "id": "0007990350711940",
+    "name": "HOTLINE HEATING",
+    "address": "7915 7TH AVE SW, SEATTLE WA 98106-2102",
+    "phone": "(206) 764-9276",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5314314,
+    "lng": -122.3445377
+  },
+  {
+    "id": "0005587530563643",
+    "name": "GREENWOOD HEATING & AIR CONDITIONING",
+    "address": "14027 INTERURBAN AVE S, TUKWILA WA 98168-4722",
+    "phone": "(206) 365-3313",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4773338,
+    "lng": -122.2614305
+  },
+  {
+    "id": "0008117070725133",
+    "name": "SHANNON HEIGHTS HEATING INC",
+    "address": "13129 50TH AVE NE, MARYSVILLE WA 98271-8609",
+    "phone": "(360) 435-7359",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.1148053,
+    "lng": -122.1638084
+  },
+  {
+    "id": "0007759130687899",
+    "name": "SNOHOMISH FURNACE & AIR LLC",
+    "address": "9804 CHAPEL HILL RD, LAKE STEVENS WA 98258-1957",
+    "phone": "(425) 610-6635",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9956956,
+    "lng": -122.0995975
+  },
+  {
+    "id": "0008806000797625",
+    "name": "SOUTHEND HEATING AND AIR INC",
+    "address": "12319 94TH AVE E, PUYALLUP WA 98373-5042",
+    "phone": "(206) 396-5109",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1506813,
+    "lng": -122.3039885
+  },
+  {
+    "id": "0008721860788655",
+    "name": "ALL HEATING",
+    "address": "8425 FOBES RD, SNOHOMISH WA 98290",
+    "phone": "(425) 743-5000",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9482637,
+    "lng": -122.1182501
+  },
+  {
+    "id": "0007233130632261",
+    "name": "MONROE HEATING & REFRIGERATION",
+    "address": "21203 MEADOW LAKE RD, SNOHOMISH WA 98290",
+    "phone": "(360) 794-7914",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9152301,
+    "lng": -121.9475672
+  },
+  {
+    "id": "0007612030672536",
+    "name": "SUPERIOR PLUMBING & HEATING INC",
+    "address": "11621 23RD AVE SW, BURIEN WA 98146-2504",
+    "phone": "(206) 397-4060",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.4984961,
+    "lng": -122.363489
+  },
+  {
+    "id": "0008232150737191",
+    "name": "SVM HEATING",
+    "address": "9114 4TH AVE W, EVERETT WA 98204-7122",
+    "phone": "(425) 828-0231",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9151883,
+    "lng": -122.2392856
+  },
+  {
+    "id": "0008801850797163",
+    "name": "TACOMA FURNACE",
+    "address": "11520 GRAVELLY LAKE DR SW, LAKEWOOD WA 98499-1400",
+    "phone": "(571) 205-5422",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1529878,
+    "lng": -122.5354799
+  },
+  {
+    "id": "0008881520805531",
+    "name": "TEMPRA HVAC LLC",
+    "address": "8333 5TH ST SE, LAKE STEVENS WA 98258-7373",
+    "phone": "(425) 217-8989",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9917121,
+    "lng": -122.1186568
+  },
+  {
+    "id": "0008013840714387",
+    "name": "THE HEAT & AC GUYS INC",
+    "address": "5016 208TH ST SW, LYNNWOOD WA 98036-7632",
+    "phone": "(425) 582-7200",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.8100961,
+    "lng": -122.3008038
+  },
+  {
+    "id": "0001127690113864",
+    "name": "THERMAL PRODUCTS INC",
+    "address": "21020 70TH AVE W, EDMONDS WA 98026-7202",
+    "phone": "(206) 363-4328",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.808164,
+    "lng": -122.3281502
+  },
+  {
+    "id": "0008372650751852",
+    "name": "THRIVE HEATING AND AIR LLC",
+    "address": "7329 38TH ST NE, MARYSVILLE WA 98270-6964",
+    "phone": "(509) 945-4598",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 48.0309225,
+    "lng": -122.1318815
+  },
+  {
+    "id": "0008357700750288",
+    "name": "TOTAL HEATING COMPANY LLC",
+    "address": "12805 288TH ST E, GRAHAM WA 98338-9016",
+    "phone": "(253) 845-6696",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 46.9952706,
+    "lng": -122.2605389
+  },
+  {
+    "id": "0008309010745212",
+    "name": "AASIA COOLING & HEATING",
+    "address": "415 NE 58TH AVE, PORTLAND OR 97213",
+    "phone": "(503) 238-0638",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 45.5260293,
+    "lng": -122.6045968
+  },
+  {
+    "id": "0008892330806750",
+    "name": "TSS HVAC SERVICES LLC",
+    "address": "1712 S ROOSEVELT ST, BOISE ID 83705-2824",
+    "phone": "(208) 854-7471",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 43.5880607,
+    "lng": -116.2334166
+  },
+  {
+    "id": "0005766840582677",
+    "name": "UNIVERSAL APPLIANCE & COMMERCIAL REFRIGERATION",
+    "address": "9243 MARTIN LUTHER KING JR WAY S, SEATTLE WA 98118-5314",
+    "phone": "(206) 334-5801",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.5192334,
+    "lng": -122.2802415
+  },
+  {
+    "id": "0008851870802415",
+    "name": "VARSITY HEATING AND COOLING LLC",
+    "address": "30236 1ST AVE S, FEDERAL WAY WA 98003-3644",
+    "phone": "(253) 802-3743",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3305228,
+    "lng": -122.3347328
+  },
+  {
+    "id": "0007853840697734",
+    "name": "VLAD HVAC LLC",
+    "address": "1218 125TH AVE E, EDGEWOOD WA 98372-1638",
+    "phone": "(253) 332-1137",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2458249,
+    "lng": -122.2628519
+  },
+  {
+    "id": "0008593230775137",
+    "name": "WASHINGTON WATER HEATERS HEATING & AIR INC",
+    "address": "6622 232ND AVE E, BUCKLEY WA 98321-6000",
+    "phone": "(425) 883-4871",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.1967318,
+    "lng": -122.1248344
+  },
+  {
+    "id": "0008173470730971",
+    "name": "WEEKEND HEATING & COOLING LLC",
+    "address": "5412 1ST DR W, EVERETT WA 98203-3498",
+    "phone": "(786) 216-6010",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.9489255,
+    "lng": -122.2359257
+  },
+  {
+    "id": "0008451190760174",
+    "name": "WESNOR PLUMBING & HEATING LLC",
+    "address": "8030 DENSMORE AVE N, SEATTLE WA 98103-4437",
+    "phone": "(206) 802-5113",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.6878904,
+    "lng": -122.3374021
+  },
+  {
+    "id": "0008681500784357",
+    "name": "WESTSIDE HVAC INC",
+    "address": "29415 154TH AVE SE, KENT WA 98042-4562",
+    "phone": "(253) 258-4022",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.3381736,
+    "lng": -122.1372637
+  },
+  {
+    "id": "0008868580804153",
+    "name": "TACOMA HEATING AND PLUMBING LLC",
+    "address": "5201 65TH AVE W, UNIVERSITY WA 98467",
+    "phone": "(501) 593-5847",
+    "likelyHvac": true,
+    "naicsDescription": "Plumbing, Heating, and Air-Conditioning Contractors",
+    "lat": 47.2099317,
+    "lng": -122.5221735
+  }
+]

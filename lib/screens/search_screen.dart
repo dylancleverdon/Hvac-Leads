@@ -8,6 +8,7 @@ import '../models/home_location.dart';
 import '../services/database_service.dart';
 import '../services/overpass_service.dart';
 import '../utils/distance.dart';
+import 'add_manual_company_screen.dart';
 import 'settings_screen.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
   List<OverpassResult> _results = [];
   Set<String> _savedOsmIds = {};
   bool _loading = false;
+  bool _hasSearched = false;
   String? _error;
   int _cooldownSeconds = 0;
   Timer? _cooldownTimer;
@@ -90,7 +92,10 @@ class _SearchScreenState extends State<SearchScreen> {
       });
     } finally {
       if (mounted) {
-        setState(() => _loading = false);
+        setState(() {
+          _loading = false;
+          _hasSearched = true;
+        });
         _startCooldown();
       }
     }
@@ -237,11 +242,45 @@ class _SearchScreenState extends State<SearchScreen> {
               Padding(padding: const EdgeInsets.all(24), child: Text(_error!)));
     }
     if (_results.isEmpty) {
-      return const Center(
+      if (!_hasSearched) {
+        return const Center(
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Text(
+                'Tap "Search Nearby" to find HVAC companies around your home.'),
+          ),
+        );
+      }
+      // A real zero-result search, not just "haven't searched yet" — OSM's
+      // coverage of small service businesses is volunteer-maintained and
+      // genuinely sparse in a lot of places, so make that plain instead of
+      // looking like nothing happened, and offer the manual-add escape hatch.
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(24),
-          child: Text(
-              'Tap "Search Nearby" to find HVAC companies around your home.'),
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'No HVAC companies found on OpenStreetMap within range. '
+                "That's common — small service businesses are often not "
+                'mapped there. You can add companies you already know about '
+                'by hand instead.',
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              FilledButton.icon(
+                onPressed: () async {
+                  await Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (_) => const AddManualCompanyScreen()),
+                  );
+                },
+                icon: const Icon(Icons.add_business),
+                label: const Text('Add Company'),
+              ),
+            ],
+          ),
         ),
       );
     }

@@ -65,27 +65,30 @@ class OverpassService {
   OverpassService({http.Client? client}) : _client = client ?? http.Client();
 
   // Public Overpass mirrors, tried in order, since the shared instances
-  // occasionally rate-limit or go down. More mirrors means a single
-  // instance rate-limiting this IP is much less likely to fail the search.
+  // occasionally rate-limit or go down. Only list hosts actually verified
+  // to resolve/respond — a bogus hostname here fails the whole search with
+  // a DNS error, which is worse than having fewer mirrors.
   static const _endpoints = [
     'https://overpass-api.de/api/interpreter',
     'https://overpass.kumi.systems/api/interpreter',
-    'https://overpass.openstreetmap.ru/api/interpreter',
-    'https://overpass.osm.ch/api/interpreter',
   ];
 
   final http.Client _client;
 
   String _buildQuery(double lat, double lng, double radiusMeters) {
     final around = 'around:${radiusMeters.round()},$lat,$lng';
-    const nameRegex = 'HVAC|[Hh]eating|[Aa]ir[- ][Cc]ondition';
+    // Case-insensitive (the ",i" flag) since Overpass regex matching is
+    // case-sensitive by default and business names aren't consistently
+    // capitalized ("Acme Hvac", "ABC HEATING", etc).
+    const nameRegex =
+        'HVAC|heating|cooling|furnace|duct|air[- ]?condition';
     return '''
 [out:json][timeout:25];
 (
   node["craft"="hvac"]($around);
   way["craft"="hvac"]($around);
-  node["name"~"$nameRegex"]($around);
-  way["name"~"$nameRegex"]($around);
+  node["name"~"$nameRegex",i]($around);
+  way["name"~"$nameRegex",i]($around);
 );
 out center tags;
 ''';

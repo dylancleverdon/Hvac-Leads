@@ -62,6 +62,27 @@ void main() {
     expect(second.email, 'hi@heat.test');
   });
 
+  test('name-match query clauses are case-insensitive', () async {
+    String? capturedQuery;
+    final client = MockClient((request) async {
+      capturedQuery = request.bodyFields['data'];
+      return http.Response(jsonEncode({'elements': []}), 200);
+    });
+    final service = OverpassService(client: client);
+
+    await service.searchNearby(lat: 1.0, lng: 2.0, radiusMiles: 5);
+
+    expect(capturedQuery, isNotNull);
+    // Every ["name"~"..."] clause should carry the ",i" case-insensitive
+    // flag, otherwise a business like "Acme Hvac" (not all-caps) is missed.
+    final nameClauses =
+        RegExp(r'"name"~"[^"]*"(,i)?\]').allMatches(capturedQuery!).toList();
+    expect(nameClauses, isNotEmpty);
+    for (final match in nameClauses) {
+      expect(match.group(0), endsWith(',i]'));
+    }
+  });
+
   test('throws OverpassRateLimitException when every endpoint returns 429',
       () async {
     final client = MockClient((request) async => http.Response(
